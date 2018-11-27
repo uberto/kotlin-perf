@@ -9,40 +9,37 @@ class Knapsack {
         fun selectWatch(shop: Set<Watch>, maxWeight: Int): Int =
             selectWatch(mutableMapOf(), shop, maxWeight, emptySet())
 
-        fun selectWatch(memo: MutableMap<String, Int>, shop: Set<Watch>, maxWeight: Int, choice: Set<Watch>): Int {
-            val key = generateKey(choice)
-
-            memo[key]?.apply { return this }
-
-//            var maxVal = choice.sumBy { it.price }
-//
-//            for (w: Watch in shop) {
-//                if (!(w in choice) && w.weight <= maxWeight) {
-//                    val nc = choice + w
-//                    val value = selectWatch(memo, shop, maxWeight - w.weight, nc)
-//                    if (value > maxVal)
-//                        maxVal = value
-//                }
-//            }
-//
-//            memo.put(key, maxVal)
-//            return maxVal
-
-            val priceSum = choice.sumBy { it.price }
-
-            val maxVal = shop .filter { !(it in choice) && it.weight <= maxWeight }
-                .map { selectWatch(
-                    memo,
-                    shop,
-                    maxWeight - it.weight,
-                    choice + it) }
+        fun priceAddingElement(memo: MutableMap<String, Int>, shop: Set<Watch>, choice: Set<Watch>, maxWeight: Int, priceSum: Int): Int =
+            shop
+                .filter { !(it in choice) && it.weight <= maxWeight }
+                .map {
+                    selectWatch(
+                        memo,
+                        shop,
+                        maxWeight - it.weight,
+                        choice + it) }
                 .filter { it > priceSum }
                 .max() ?: priceSum
 
-            memo[key] = maxVal
 
-            return maxVal
+        fun selectWatch(memo: MutableMap<String, Int>, shop: Set<Watch>, maxWeight: Int, choice: Set<Watch>): Int =
+
+            memoization(memo, generateKey(choice)) {
+
+                priceAddingElement(memo, shop, choice, maxWeight, choice.sumBy { it.price })}
+
+
+        private fun memoization(
+            memo: MutableMap<String, Int>,
+            key: String,
+            f: () -> Int
+        ): Int {
+
+            memo[key]?.apply { return this }
+
+            return f().also { memo[key] = it }
         }
+
 
         private fun generateKey(choice: Set<Watch>) =
             choice.sortedBy { "${it.price}-${it.weight}" }.toString()
