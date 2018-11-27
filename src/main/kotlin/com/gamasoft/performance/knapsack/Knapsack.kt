@@ -14,18 +14,33 @@ class Knapsack {
 
             memo[key]?.apply { return this }
 
-            var maxVal = choice.sumBy { it.price }
+//            var maxVal = choice.sumBy { it.price }
+//
+//            for (w: Watch in shop) {
+//                if (!(w in choice) && w.weight <= maxWeight) {
+//                    val nc = choice + w
+//                    val value = selectWatch(memo, shop, maxWeight - w.weight, nc)
+//                    if (value > maxVal)
+//                        maxVal = value
+//                }
+//            }
+//
+//            memo.put(key, maxVal)
+//            return maxVal
 
-            for (w: Watch in shop) {
-                if (!(w in choice) && w.weight <= maxWeight) {
-                    val nc = choice + w
-                    val value = selectWatch(memo, shop, maxWeight - w.weight, nc)
-                    if (value > maxVal)
-                        maxVal = value
-                }
-            }
+            val priceSum = choice.sumBy { it.price }
 
-            memo.put(key, maxVal)
+            val maxVal = shop .filter { !(it in choice) && it.weight <= maxWeight }
+                .map { selectWatch(
+                    memo,
+                    shop,
+                    maxWeight - it.weight,
+                    choice + it) }
+                .filter { it > priceSum }
+                .max() ?: priceSum
+
+            memo[key] = maxVal
+
             return maxVal
         }
 
