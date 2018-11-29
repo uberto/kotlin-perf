@@ -10,6 +10,9 @@ data class Complex(val r: Double, val i: Double){
         Complex(r = this.r + other.r, i = this.i + other.i)
     operator fun minus(other: Complex) =
         Complex(r = this.r - other.r, i = this.i - other.i)
-    fun Complex.square() = this * this
-    fun Complex.squaredModule() = r * r + i * i
+    fun squared() = this * this
+    fun squaredModule() = r * r + i * i
+    fun Double.toComplex() = Complex(r=this, i=0.0)
 }
+
+val origin = Complex(0.0, 0.0)
