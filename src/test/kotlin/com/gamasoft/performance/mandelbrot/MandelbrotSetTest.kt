@@ -47,11 +47,12 @@ internal class MandelbrotSetTest{
         (1..100).forEach {
 
             val start = System.currentTimeMillis()
-             pa.calculate(1000)
+            val matrix = pa.calculate(1000)
             val elapsed = System.currentTimeMillis() - start
 
             println("1000x1000x1000 in $elapsed")
 
+            renderToStr(matrix).forEach{println(it.slice(1..80))}
         }
 
         //1564 1.8          -ea -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler

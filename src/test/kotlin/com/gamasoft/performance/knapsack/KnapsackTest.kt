@@ -73,18 +73,36 @@ class KnapsackTest {
 
         assertEquals(0, selectWatch(shop, 5))
         assertEquals(40, selectWatch(shop, 10))
+        assertEquals(260, selectWatch(shop, 50))
+        assertEquals(515, selectWatch(shop, 100))
+        assertEquals(1199, selectWatch(shop, 250))
+        // 102 (1.6 graal)
+        // 106 (1.8 graal)
+        // 107 (1.8 )
+        // 106 (1.6 )
 
-        assertEquals(695, selectWatch(shop, 130))
 
-        val start = System.currentTimeMillis()
+
         assertEquals(1919, selectWatch(shop, 500))
         // 3743 ms Java,
         // 1141 (1.6 ParOld)
-        // 1091 (1.8 ParOld)
+        // 1620 (1.6 ParOld GraalVm)
+        // 1091 (1.8 ParOld)  -ea -XX:+UnlockExperimentalVMOptions -XX:+UseParallelGC
         // 1591 (1.8 ParOld)  -ea -XX:+UnlockExperimentalVMOptions -XX:+UseParallelGC -XX:+UseJVMCICompiler
 
-        println("knapsack " + (System.currentTimeMillis() - start))
+        (1..100).forEach {
+            val start = System.currentTimeMillis()
+            assertEquals(260, selectWatch(shop, 50))
+            assertEquals(515, selectWatch(shop, 100))
+            assertEquals(1199, selectWatch(shop, 250))
+            assertEquals(1919, selectWatch(shop, 500))
+            // 1736 (1.6 no graal)
+            // 1740 (1.8 graal)
 
+
+            val elapsed = System.currentTimeMillis() - start
+            println("knapsack " + elapsed)
+        }
     }
 
 
