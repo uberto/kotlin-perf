@@ -13,27 +13,25 @@ data class ZoomableView(val center: Complex, val magnification: Double){
 
 data class PointsArea(val width: Int, val height: Int, val topLeftCoord: Complex, val pixelIncrement: Double) {
 
-    fun calculate(maxIter: Int):Array<Array<Int>> {
+    fun calculate(maxIter: Int):Array<Array<Int>> =
 
-        val res = Array(height){Array(width){0}}
+        Array(height){Array(width){0}}.apply{
 
-        (1..height).forEach{y ->
-            (1..width).forEach{x ->
-                val c = Complex(x * pixelIncrement + topLeftCoord.r,
-                    y*pixelIncrement + topLeftCoord.i)
-
+        (1..height).forEach { y ->
+            (1..width).forEach { x ->
+                val c = Complex(
+                    x * pixelIncrement + topLeftCoord.r,
+                    y * pixelIncrement + topLeftCoord.i
+                )
                 val iter = mandelSet(origin, c, maxIter)
-                res[y-1][x-1] = iter
+                this[y - 1][x - 1] = iter
             }
         }
-
-        return res
     }
 }
 
 
 fun mandelSet(initZ: Complex, c:Complex, maxIter: Int): Int {
-
     var z = initZ
     (1..maxIter).forEach{
         z = z.squared() + c

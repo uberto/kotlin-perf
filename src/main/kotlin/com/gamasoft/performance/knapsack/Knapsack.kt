@@ -23,19 +23,13 @@ class Knapsack {
 
 
         fun selectWatch(memo: MutableMap<String, Int>, shop: Set<Watch>, maxWeight: Int, choice: Set<Watch>): Int =
-
             memoization(memo, generateKey(choice)) {
-
                 priceAddingElement(memo, shop, choice, maxWeight, choice.sumBy { it.price })}
 
 
-        private fun memoization(
-            memo: MutableMap<String, Int>,
-            key: String,
-            f: () -> Int
-        ): Int {
+        private fun memoization(memo: MutableMap<String, Int>, key: String, f: () -> Int): Int {
 
-            memo[key]?.apply { return this }
+            memo[key]?.let { return it }
 
             return f().also { memo[key] = it }
         }
