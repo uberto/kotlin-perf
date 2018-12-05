@@ -52,13 +52,12 @@ internal class MandelbrotSetTest{
 
             println("1000x1000x1000 in $elapsed")
 
-            renderToStr(matrix).forEach{println(it.slice(1..80))}
+            renderToStr(matrix).first().also{println(it.slice(1..80))}
         }
 
-        //1564 1.8          -ea -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
-        //1278 graalvm 1.8  -ea -XX:+UnlockExperimentalVMOptions -XX:+UseParallelGC -XX:+UseJVMCICompiler
-        //1564 1.6
-        //1301 1.6 graalvm
+        //1509   -Xms6g -Xmx6g -XX:+UseParallelGC
+        //1279   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+
 
 
     }
