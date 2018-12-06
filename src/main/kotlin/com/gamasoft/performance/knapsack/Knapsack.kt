@@ -1,5 +1,7 @@
 package com.gamasoft.performance.knapsack
 
+typealias Memoizer = MutableMap<Int, Int>
+
 class Knapsack {
 
     companion object {
@@ -9,7 +11,7 @@ class Knapsack {
         fun selectWatch(shop: Set<Watch>, maxWeight: Int): Int =
             selectWatch(mutableMapOf(), shop, maxWeight, emptySet(), 0)
 
-        fun priceAddingElement(memo: MutableMap<String, Int>, shop: Set<Watch>, choice: Set<Watch>, maxWeight: Int, priceSum: Int): Int =
+        fun priceAddingElement(memo: Memoizer, shop: Set<Watch>, choice: Set<Watch>, maxWeight: Int, priceSum: Int): Int =
             shop
                 .filter { !(it in choice) && it.weight <= maxWeight }
                 .map {
@@ -23,22 +25,21 @@ class Knapsack {
                 .max() ?: priceSum
 
 
-        fun selectWatch(memo: MutableMap<String, Int>, shop: Set<Watch>, maxWeight: Int, choice: Set<Watch>, priceSum: Int): Int =
+        fun selectWatch(memo: Memoizer, shop: Set<Watch>, maxWeight: Int, choice: Set<Watch>, priceSum: Int): Int =
             memoization(memo, generateKey(choice)) {
                 priceAddingElement(memo, shop, choice, maxWeight, priceSum)}
 
 
-        private fun memoization(memo: MutableMap<String, Int>, key: String, f: () -> Int): Int {
+        private fun memoization(memo: Memoizer, key: Int, f: () -> Int): Int =
+            when (val w = memo[key]) {
+                null -> f().also { memo[key] = it }
+                else -> w
+            }
 
-            memo[key]?.let { return it }
 
-            return f().also { memo[key] = it }
-        }
-
-
-        private fun generateKey(choice: Set<Watch>) =
-            choice.sortedBy { "${it.price}-${it.weight}" }.toString()
-
+        private fun generateKey(choice: Set<Watch>): Int =
+//            choice.sortedBy { "${it.price}-${it.weight}" }.toString()
+            choice.map{ "${it.price}-${it.weight}" }.sorted().hashCode()
     }
 }
 
