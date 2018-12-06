@@ -7,7 +7,7 @@ class Knapsack {
         fun shop(vararg watches: Watch): Set<Watch> = watches.toHashSet()
 
         fun selectWatch(shop: Set<Watch>, maxWeight: Int): Int =
-            selectWatch(mutableMapOf(), shop, maxWeight, emptySet())
+            selectWatch(mutableMapOf(), shop, maxWeight, emptySet(), 0)
 
         fun priceAddingElement(memo: MutableMap<String, Int>, shop: Set<Watch>, choice: Set<Watch>, maxWeight: Int, priceSum: Int): Int =
             shop
@@ -17,14 +17,15 @@ class Knapsack {
                         memo,
                         shop,
                         maxWeight - it.weight,
-                        choice + it) }
+                        choice + it,
+                        priceSum + it.price) }
                 .filter { it > priceSum }
                 .max() ?: priceSum
 
 
-        fun selectWatch(memo: MutableMap<String, Int>, shop: Set<Watch>, maxWeight: Int, choice: Set<Watch>): Int =
+        fun selectWatch(memo: MutableMap<String, Int>, shop: Set<Watch>, maxWeight: Int, choice: Set<Watch>, priceSum: Int): Int =
             memoization(memo, generateKey(choice)) {
-                priceAddingElement(memo, shop, choice, maxWeight, choice.sumBy { it.price })}
+                priceAddingElement(memo, shop, choice, maxWeight, priceSum)}
 
 
         private fun memoization(memo: MutableMap<String, Int>, key: String, f: () -> Int): Int {

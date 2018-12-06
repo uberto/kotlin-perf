@@ -81,8 +81,8 @@ class KnapsackTest {
             assertEquals(1919, selectWatch(shop, 500))
             //1125 -Xms6g -Xmx6g -XX:+UseParallelGC
             //1736 -Xms6g -Xmx6g -XX:+UnlockExperimentalVMOptions -XX:+UseParallelGC -XX:+UseJVMCICompiler
-
-
+//1273
+//1545
             val elapsed = System.currentTimeMillis() - start
             println("knapsack " + elapsed)
         }
