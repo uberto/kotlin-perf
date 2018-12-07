@@ -1,6 +1,6 @@
 package com.gamasoft.performance.knapsack
 
-import com.gamasoft.performance.knapsack.Knapsack.Companion.selectWatch
+import com.gamasoft.performance.knapsack.Knapsack.Companion.selectWatches
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -11,16 +11,16 @@ class KnapsackTest {
     fun smallShop() {
 
         val shop = Knapsack.shop(
-            Watch(1, 1),
-            Watch(3, 2),
-            Watch(1, 3)
+            Watch(weight = 1, price = 1),
+            Watch(weight = 3, price = 2),
+            Watch(weight = 1, price = 3)
         )
 
-        assertEquals(3, selectWatch(shop, 1))
-        assertEquals(4, selectWatch(shop, 2))
-        assertEquals(4, selectWatch(shop, 3))
-        assertEquals(5, selectWatch(shop, 4))
-        assertEquals(6, selectWatch(shop, 5))
+        assertEquals(3, selectWatches(shop, maxWeight = 1))
+        assertEquals(4, selectWatches(shop, maxWeight = 2))
+        assertEquals(4, selectWatches(shop, maxWeight = 3))
+        assertEquals(5, selectWatches(shop, maxWeight = 4))
+        assertEquals(6, selectWatches(shop, maxWeight = 5))
 
     }
 
@@ -41,11 +41,11 @@ class KnapsackTest {
         )
 
         assertAll(
-            { assertEquals(1, selectWatch(shop, 1)) },
-            { assertEquals(4, selectWatch(shop, 2)) },
-            { assertEquals(5, selectWatch(shop, 3)) },
-            { assertEquals(5, selectWatch(shop, 4)) },
-            { assertEquals(6, selectWatch(shop, 5)) }
+            { assertEquals(1, selectWatches(shop, 1)) },
+            { assertEquals(4, selectWatches(shop, 2)) },
+            { assertEquals(5, selectWatches(shop, 3)) },
+            { assertEquals(5, selectWatches(shop, 4)) },
+            { assertEquals(6, selectWatches(shop, 5)) }
         )
     }
 
@@ -73,18 +73,18 @@ class KnapsackTest {
 
         (1..20).forEach {
             val start = System.currentTimeMillis()
-            assertEquals(0, selectWatch(shop, 5))
-            assertEquals(40, selectWatch(shop, 10))
-            assertEquals(260, selectWatch(shop, 50))
-            assertEquals(515, selectWatch(shop, 100))
-            assertEquals(1199, selectWatch(shop, 250)) //nomemo: c2 6187 graal 5844
-            assertEquals(1919, selectWatch(shop, 500))
+            assertEquals(0, selectWatches(shop, 5))
+            assertEquals(40, selectWatches(shop, 10))
+            assertEquals(260, selectWatches(shop, 50))
+            assertEquals(515, selectWatches(shop, 100))
+            assertEquals(1199, selectWatches(shop, 250))
+            assertEquals(1919, selectWatches(shop, 500))
             //old
             //1125 -Xms6g -Xmx6g -XX:+UseParallelGC
             //1704 -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
-            //348 -Xms6g -Xmx6g -XX:+UseParallelGC
-            //355 -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+            //719 -Xms6g -Xmx6g -XX:+UseParallelGC
+            //661 -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
             val elapsed = System.currentTimeMillis() - start
             println("knapsack " + elapsed)
@@ -127,10 +127,11 @@ class KnapsackTest {
             Watch(42, 222)
         )
 
-        assertEquals(0, selectWatch(shop, 5))
-        assertEquals(40, selectWatch(shop, 10))
-        assertEquals(706, selectWatch(shop, 130))
-        assertEquals(1438, selectWatch(shop, 279))
+        assertEquals(0, selectWatches(shop, 5))
+        assertEquals(40, selectWatches(shop, 10))
+        assertEquals(706, selectWatches(shop, 130))
+        assertEquals(1438, selectWatches(shop, 279))
+        assertEquals(1537, selectWatches(shop, 300))
 
     }
 
