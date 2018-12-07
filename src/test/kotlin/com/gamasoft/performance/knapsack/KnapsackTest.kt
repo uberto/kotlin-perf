@@ -71,20 +71,20 @@ class KnapsackTest {
             Watch(20, 99)
         )
 
-        (1..100).forEach {
+        (1..20).forEach {
             val start = System.currentTimeMillis()
             assertEquals(0, selectWatch(shop, 5))
             assertEquals(40, selectWatch(shop, 10))
             assertEquals(260, selectWatch(shop, 50))
             assertEquals(515, selectWatch(shop, 100))
-            assertEquals(1199, selectWatch(shop, 250)) //c2 6187 graal 5844
+            assertEquals(1199, selectWatch(shop, 250)) //nomemo: c2 6187 graal 5844
             assertEquals(1919, selectWatch(shop, 500))
             //old
             //1125 -Xms6g -Xmx6g -XX:+UseParallelGC
             //1704 -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
-            //521 -Xms6g -Xmx6g -XX:+UseParallelGC
-            //571 -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+            //348 -Xms6g -Xmx6g -XX:+UseParallelGC
+            //355 -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
             val elapsed = System.currentTimeMillis() - start
             println("knapsack " + elapsed)

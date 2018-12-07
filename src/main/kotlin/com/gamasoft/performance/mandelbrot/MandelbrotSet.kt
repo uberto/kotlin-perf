@@ -1,5 +1,8 @@
 package com.gamasoft.performance.mandelbrot
 
+import kotlin.math.roundToInt
+import kotlin.math.truncate
+
 
 data class ZoomableView(val center: Complex, val magnification: Double){
 
@@ -41,5 +44,9 @@ fun mandelSet(initZ: Complex, c:Complex, maxIter: Int): Int {
     return maxIter
 }
 
-fun renderToStr(matrix: Array<Array<Int>>): List<String> =
-    matrix.map { it.map{ (32+ 64 - it).toChar() }.joinToString("") }
+
+val asciiArt = "_.,*:o=&8#W@".toCharArray()
+
+fun renderToAsciiArt(maxIter: Int, matrix: Array<Array<Int>>): List<String> =
+    matrix.map { it.map{ (Math.sqrt(it.toDouble()) * asciiArt.size) / Math.sqrt(maxIter.toDouble()) -1 }
+        .map { asciiArt[it.roundToInt()] }.joinToString("") }

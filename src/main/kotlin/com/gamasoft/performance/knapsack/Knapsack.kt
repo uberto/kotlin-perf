@@ -39,7 +39,7 @@ class Knapsack {
 
         private fun generateKey(choice: Set<Watch>): Int =
 //            choice.sortedBy { "${it.price}-${it.weight}" }.toString()
-            choice.map{ "${it.price}-${it.weight}" }.sorted().hashCode()
+            choice.map{ it.hashCode() }.sorted().hashCode()
     }
 }
 

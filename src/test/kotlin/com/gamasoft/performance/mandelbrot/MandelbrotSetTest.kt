@@ -26,14 +26,15 @@ internal class MandelbrotSetTest{
 
 
     @Test
-    fun calculatePointsArea(){
+    fun renderWholeMandlebrotSet(){
 
-        val center = Complex(-1.0, 0.0)
-        val pa = ZoomableView(center, 0.25).toPointsArea(80,30)
+        val center = Complex(-0.5, 0.0)
+        val pa = ZoomableView(center, 0.25).toPointsArea(0,30)
 
-        val matrix = pa.calculate(64)
+        val maxIter = 80
+        val matrix = pa.calculate(maxIter)
 
-        renderToStr(matrix).forEach{println(it)}
+        renderToAsciiArt(maxIter, matrix).forEach{println(it)}
 
     }
 
@@ -44,7 +45,7 @@ internal class MandelbrotSetTest{
         val center = Complex(-1.0, 0.0)
         val pa = ZoomableView(center, 0.5).toPointsArea(1000,1000)
 
-        (1..100).forEach {
+        (1..20).forEach {
 
             val start = System.currentTimeMillis()
             val matrix = pa.calculate(1000)
@@ -52,7 +53,7 @@ internal class MandelbrotSetTest{
 
             println("1000x1000x1000 in $elapsed")
 
-            renderToStr(matrix).first().also{println(it.slice(1..80))}
+            renderToAsciiArt(1000, matrix).first().also{println(it.slice(1..80))}
         }
 
         //1509   -Xms6g -Xmx6g -XX:+UseParallelGC
