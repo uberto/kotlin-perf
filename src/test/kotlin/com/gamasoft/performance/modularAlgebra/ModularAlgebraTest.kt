@@ -36,10 +36,11 @@ class ModularAlgebraTest {
 
         (1..20).forEach {
             val start = System.currentTimeMillis()
-            assertEquals(7136703, sumOfCompareSquares(size, 10))
-            assertEquals(12991154, sumOfCompareSquares(size, 20))
-            assertEquals(18549917, sumOfCompareSquares(size, 30))
-            assertEquals(24010171, sumOfCompareSquares(size, 40))
+  //          assertEquals(713647050, sumOfCompareSquares(size, 1,10)) for 10000
+            assertEquals(7136703, sumOfCompareSquares(size, 1,10))
+            assertEquals(11944962, sumOfCompareSquares(size, 11, 31))
+            assertEquals(15903270, sumOfCompareSquares(size, 41, 70))
+            assertEquals(15650469, sumOfCompareSquares(size, 71, 100))
             val elapsed = System.currentTimeMillis() - start
             println("Modular Algebra of size $size  -> $elapsed   (${Runtime.getRuntime().freeMemory()/1000000})")
         }
@@ -47,13 +48,16 @@ class ModularAlgebraTest {
         //855   -Xms6g -Xmx6g -XX:+UseParallelGC
         //1170   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
         //1000*1000*100
-        //810   -Xms6g -Xmx6g -XX:+UseParallelGC
-        //1191   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+        //711   -Xms6g -Xmx6g -XX:+UseParallelGC
+        //1065   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+        //10000*10000*10
+        //19402   -Xms6g -Xmx6g -XX:+UseParallelGC
+        //16034   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
     }
 
-    private fun sumOfCompareSquares(size: Int, upTo: Int) =
-        (1..upTo).map {
+    private fun sumOfCompareSquares(size: Int, from: Int, to: Int) =
+        (from..to).map {
             ModularField(it).run {
                 PlaneGrid(size)
                 .applyFunction(compareSquares)
