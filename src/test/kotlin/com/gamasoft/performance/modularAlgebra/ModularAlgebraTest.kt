@@ -16,7 +16,7 @@ class ModularAlgebraTest {
             val grid = PlaneGrid(size)
 
             ModularField(it).apply {
-                applyFunction(grid, compareSquares)
+                grid.applyFunction(compareSquares)
             }
 
             println("Modulo $it")
@@ -32,9 +32,9 @@ class ModularAlgebraTest {
     fun performanceTest() {
         val size = 1000
 
-        //100*100*10000 = 100Mb for run (about 1s)
+        //100*100*10000 = 100M operations for run (about 1s)
 
-        (1..1000).forEach {
+        (1..20).forEach {
             val start = System.currentTimeMillis()
             assertEquals(7136703, sumOfCompareSquares(size, 10))
             assertEquals(12991154, sumOfCompareSquares(size, 20))
@@ -47,17 +47,17 @@ class ModularAlgebraTest {
         //855   -Xms6g -Xmx6g -XX:+UseParallelGC
         //1170   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
         //1000*1000*100
-        //834   -Xms6g -Xmx6g -XX:+UseParallelGC
-        //1188   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+        //810   -Xms6g -Xmx6g -XX:+UseParallelGC
+        //1191   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
     }
 
     private fun sumOfCompareSquares(size: Int, upTo: Int) =
         (1..upTo).map {
             ModularField(it).run {
-                val grid = PlaneGrid(size)
-                applyFunction(grid, compareSquares)
-                grid.count()
+                PlaneGrid(size)
+                .applyFunction(compareSquares)
+                .count()
             }
         }.sum()
 
