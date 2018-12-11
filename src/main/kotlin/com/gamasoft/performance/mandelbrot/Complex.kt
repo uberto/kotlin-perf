@@ -1,6 +1,9 @@
 package com.gamasoft.performance.mandelbrot
 
-data class Complex(val r: Double, val i: Double){
+data class Complex(val r: Double, val i: Double): Comparable<Complex> {
+
+    override fun compareTo(other: Complex): Int = squaredModule().compareTo(other.squaredModule())
+
     operator fun times(other: Complex) =
         Complex(
             r = this.r * other.r - this.i * other.i,
