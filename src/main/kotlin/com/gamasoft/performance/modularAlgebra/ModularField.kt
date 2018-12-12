@@ -6,10 +6,12 @@ data class ModularField(val modulo: Int) {
 
 
     fun PlaneGrid.applyFunction(f: (ModularNumber, ModularNumber) -> Boolean) =
-        (1..size).forEach { x ->
-            (1..size).forEach { y ->
-                this[x, y] = f(x.toModularNumber(), y.toModularNumber())
+        this.also{
+            for(x in 1 .. size) {
+                for(y in 1 .. size) {
+                    this[x, y] = f(x.toModularNumber(), y.toModularNumber())
+                }
             }
-        }.let {this}
+        }
 
 }

@@ -2,7 +2,7 @@ package com.gamasoft.performance.modularAlgebra
 
 data class PlaneGrid(val size: Int) {
 
-    private val grid = BooleanArray(size*size){false}
+    private val grid = BooleanArray(size*size)
 
     operator fun set(x: Int, y: Int, value: Boolean) {
         grid[coord(x,y)] = value
@@ -13,11 +13,6 @@ data class PlaneGrid(val size: Int) {
 
     private fun coord(x: Int, y: Int) = (y-1) * size + x -1
 
-
-
-
-    fun count(): Int = grid.filter {it}.count()
-
-
+    fun count(): Int = grid.filter{it}.count()
 
 }
