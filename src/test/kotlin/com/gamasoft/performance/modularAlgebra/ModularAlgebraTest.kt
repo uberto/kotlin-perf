@@ -37,10 +37,10 @@ class ModularAlgebraTest {
         (1..20).forEach {
             val start = System.currentTimeMillis()
   //          assertEquals(713647050, sumOfCompareSquares(size, 1,10)) for 10000
-            assertEquals(55563910, sumOfFunction(1,100){x -> compareSquaresUgly(size, x)})
-            assertEquals(102209675, sumOfFunction(101, 300){x -> compareSquaresUgly(size, x)})
-            assertEquals(151591862, sumOfFunction( 301, 600){x -> compareSquaresUgly(size, x)})
-            assertEquals(201271117, sumOfFunction(601, 1000){x -> compareSquaresUgly(size, x)})
+            assertEquals(55563910, sumOfFunction(1,100){x -> compareSquares(size, x)})
+            assertEquals(102209675, sumOfFunction(101, 300){x -> compareSquares(size, x)})
+            assertEquals(151591862, sumOfFunction( 301, 600){x -> compareSquares(size, x)})
+            assertEquals(201271117, sumOfFunction(601, 1000){x -> compareSquares(size, x)})
             val elapsed = System.currentTimeMillis() - start
             println("Modular Algebra of size $size  -> $elapsed   (${Runtime.getRuntime().freeMemory()/1000000})")
         }
@@ -50,15 +50,15 @@ class ModularAlgebraTest {
         //1000*1000*1000 Ugly
         //5188   -Xms6g -Xmx6g -XX:+UseParallelGC
         //7998   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
-        //1000*1000*100
-        //624   -Xms6g -Xmx6g -XX:+UseParallelGC
-        //983   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
-        //1000*1000*100 sumOfCompareSquaresUgly
-        //666   -Xms6g -Xmx6g -XX:+UseParallelGC
-        //975   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
-        //10000*10000*10
-        //19402   -Xms6g -Xmx6g -XX:+UseParallelGC
-        //16034   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+
+//darter with 4Ghz set
+        //1000*1000*1000 Ugly
+        //3580  JDK11  -Xms6g -Xmx6g -XX:+UseParallelGC
+        //5917 Graal 16  -Xms6g -Xmx6g -XX:+UseParallelGC
+
+        //1000*1000*1000 clean
+        //3575  JDK11  -Xms6g -Xmx6g -XX:+UseParallelGC
+        //5933 Graal 16  -Xms6g -Xmx6g -XX:+UseParallelGC
 
     }
 
