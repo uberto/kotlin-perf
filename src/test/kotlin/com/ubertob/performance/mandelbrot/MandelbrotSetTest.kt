@@ -1,6 +1,6 @@
-package com.gamasoft.performance.mandelbrot
+package com.ubertob.performance.mandelbrot
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 internal class MandelbrotSetTest{

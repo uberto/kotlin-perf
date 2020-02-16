@@ -1,0 +1,22 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ModularAlgebraTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <module name="kotlin-perf" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.ubertob.performance.modularAlgebra.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.sdkman/candidates/java/19.3.0.r11-grl" />
+    <option name="PACKAGE_NAME" value="com.ubertob.performance.modularAlgebra" />
+    <option name="MAIN_CLASS_NAME" value="com.ubertob.performance.modularAlgebra.ModularAlgebraTest" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="class" />
+    <option name="VM_PARAMETERS" value=" -Xms6g -Xmx6g    -Dgraal.ShowConfiguration=info -XX:+UseParallelGC  -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:-UseJVMCICompiler " />
+    <option name="PARAMETERS" value="" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

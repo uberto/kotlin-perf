@@ -1,4 +1,4 @@
-package com.gamasoft.performance.mandelbrot
+package com.ubertob.performance.mandelbrot
 
 data class Complex(val r: Double, val i: Double): Comparable<Complex> {
 

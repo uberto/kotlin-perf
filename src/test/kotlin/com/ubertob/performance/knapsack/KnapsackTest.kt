@@ -1,6 +1,6 @@
-package com.gamasoft.performance.knapsack
+package com.ubertob.performance.knapsack
 
-import com.gamasoft.performance.knapsack.Knapsack.Companion.selectWatches
+import com.ubertob.performance.knapsack.Knapsack.Companion.selectWatches
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll

@@ -1,4 +1,4 @@
-package com.gamasoft.performance.knapsack
+package com.ubertob.performance.knapsack
 
 typealias Memoizer = MutableMap<String, Int>
 
