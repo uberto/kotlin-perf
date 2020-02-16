@@ -8,6 +8,24 @@ class ModularAlgebraTest {
         { x, y -> x.squared() >= y.squared() }
 
     @Test
+    fun calculateSquaresMod1(){
+        val total = sumOfFunction(1, 1) { x -> compareSquares(1000, x) }
+        assertEquals(1000000, total)
+    }
+
+    @Test
+    fun calculateSquaresMod2(){
+        val total = sumOfFunction(2, 2) { x -> compareSquares(1000, x) }
+        assertEquals(750000, total)
+    }
+
+    @Test
+    fun calculateSquaresMod5(){
+        val total = sumOfFunction(5, 5) { x -> compareSquares(1000, x) }
+        assertEquals(680000, total)
+    }
+
+    @Test
     fun drawThePlane() {
 
         val size = 20
@@ -32,12 +50,6 @@ class ModularAlgebraTest {
 
         (1..20).forEach {
             val start = System.currentTimeMillis()
-            //          assertEquals(713647050, sumOfCompareSquares(size, 1,10)) for 10000
-//            assertEquals(55563910, sumOfFunction(1, 100) { x -> compareSquares(size, x) })
-//            assertEquals(102209675, sumOfFunction(101, 300) { x -> compareSquares(size, x) })
-//            assertEquals(151591862, sumOfFunction(301, 600) { x -> compareSquares(size, x) })
-//            assertEquals(201271117, sumOfFunction(601, 1000) { x -> compareSquares(size, x) })
-
             assertEquals(55561084, sumOfFunction(1, 100) { x -> compareSquares(size, x) })
             assertEquals(102208112, sumOfFunction(101, 300) { x -> compareSquares(size, x) })
             assertEquals(151590652, sumOfFunction(301, 600) { x -> compareSquares(size, x) })
@@ -47,33 +59,12 @@ class ModularAlgebraTest {
             val elapsed = System.currentTimeMillis() - start
             println("Modular Algebra of size $size  -> $elapsed ms.  (freemem ${Runtime.getRuntime().freeMemory() / 1000000})")
         }
-        //1000*1000*1000
-        //7098   -Xms6g -Xmx6g -XX:+UseParallelGC
-        //11083   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
-        //1000*1000*1000 Ugly
-        //5188   -Xms6g -Xmx6g -XX:+UseParallelGC
-        //7998   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+        //Graal 19.3 size 1000
+        //11425 ms.
+        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+UseParallelGC -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+        //16272 ms.
+        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+UseParallelGC -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:-UseJVMCICompiler
 
-//darter with 4Ghz set
-        //1000*1000*1000 Ugly
-        //3580  JDK11  -Xms6g -Xmx6g -XX:+UseParallelGC
-        //5917 Graal 16  -Xms6g -Xmx6g -XX:+UseParallelGC
-
-        //1000*1000*1000 clean
-        //3575  JDK11  -Xms6g -Xmx6g -XX:+UseParallelGC
-        //5933 Graal 16  -Xms6g -Xmx6g -XX:+UseParallelGC
-
-//11/1/2020 about 3ghz
-        //1000*1000*1000 clean
-        //6117  JDK13  -Xms6g -Xmx6g -XX:+UseParallelGC
-        //7772  Graal 19.3  -Xms6g -Xmx6g -XX:+UseParallelGC
-
-//      7674 JDK13  -Xms6g -Xmx6g -XX:+UnlockExperimentalVMOptions -XX:+UseZGC (no graal)
-//      9706  JDK13  -Xms6g -Xmx6g   (g1)
-//      11662  Graal 19.3  -Xms6g -Xmx6g   (g1)
-
-//       -Xms6g -Xmx6g    -Dgraal.ShowConfiguration=info -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
-//       -Dgraal.PrintCompilation=true -Dgraal.LogFile=graal.log  -XX:+AlwaysPreTouch
     }
 
     private fun compareSquares(size: Int, modulo: Int): Int =
