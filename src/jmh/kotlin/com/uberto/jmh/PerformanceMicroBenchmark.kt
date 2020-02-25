@@ -33,15 +33,14 @@ open class PerformanceMicroBenchmark {
         Knapsack.selectWatches(shop, 500)
     }
 
-
-//    @Benchmark
+    @Benchmark
     fun mandelbrot() {
         val center = Complex(-1.0, 0.0)
         val pa = ZoomableView(center, 0.5).toPointsArea(100, 100)
         pa.calculate(1000)
     }
 
-//    @Benchmark
+    @Benchmark
     fun modularAlgebra() {
         compareSquares(1000, 13)
     }

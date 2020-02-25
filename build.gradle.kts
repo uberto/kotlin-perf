@@ -23,6 +23,8 @@ jmh {
     )
     fork = 1
     warmupForks = 0
+    warmupIterations = 1
+    iterations = 1
 }
 
 dependencies {
