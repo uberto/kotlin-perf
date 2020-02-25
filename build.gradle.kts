@@ -21,15 +21,17 @@ jmh {
         "-XX:+UnlockExperimentalVMOptions",
         "-XX:+UseJVMCICompiler"
     )
+//    fork = 1
+//    warmupForks = 0
 }
 
 dependencies {
-    compile(kotlin("stdlib-jdk8"))
-    testCompile("com.willowtreeapps.assertk:assertk-jvm:0.17")
-    testCompile("org.openjdk.jmh:jmh-core:1.23")
-    testCompile("org.openjdk.jmh:jmh-generator-annprocess:1.23")
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.4.2")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.4.2")
+    implementation(kotlin("stdlib-jdk8"))
+    testImplementation("com.willowtreeapps.assertk:assertk-jvm:0.17")
+    testImplementation("org.openjdk.jmh:jmh-core:1.23")
+    testImplementation("org.openjdk.jmh:jmh-generator-annprocess:1.23")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 }
 
 tasks.withType<KotlinCompile> {
