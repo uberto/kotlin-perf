@@ -1,0 +1,22 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="com.ubertob.performance in kotlin-perf" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <module name="kotlin-perf" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.ubertob.performance.mandelbrot.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.sdkman/candidates/java/19.3.1.r11-grl" />
+    <option name="PACKAGE_NAME" value="com.ubertob.performance" />
+    <option name="MAIN_CLASS_NAME" value="" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="package" />
+    <option name="VM_PARAMETERS" value="-Xms2g -Xmx2g -Dgraal.ShowConfiguration=info -XX:+UseParallelOldGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler -Dgraal.LogFile=graal.log" />
+    <option name="PARAMETERS" value="" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

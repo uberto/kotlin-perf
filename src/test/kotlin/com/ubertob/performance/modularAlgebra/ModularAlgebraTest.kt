@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class ModularAlgebraTest {
-    val compareSquares: (ModularNumber, ModularNumber) -> Boolean =
-        { x, y -> x.squared() >= y.squared() }
+
 
     @Test
     fun calculateSquaresMod1(){
@@ -65,30 +64,6 @@ class ModularAlgebraTest {
         //16272 ms.
         // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+UseParallelOldGC -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:-UseJVMCICompiler
 
-    }
-
-    private fun compareSquares(size: Int, modulo: Int): Int =
-        ModularField(modulo).applyFunction(compareSquares)(size).count()
-
-
-    private fun sumOfFunction(from: Int, to: Int, f: (Int) -> Int) =
-        (from..to)
-            .map { f(it) }
-            .sum()
-
-    private fun compareSquaresUgly(size: Int, modulo: Int): Int {
-        val boolGrid = BooleanArray(size * size)
-        //            unknownFun(boolGrid)
-        for (x in 1..size) {
-            for (y in 1..size) {
-                boolGrid[(y - 1) * size + x - 1] = (x * x) % modulo >= (y * y) % modulo
-            }
-        }
-        var tot = 0
-        for (i in 0 until boolGrid.size) {
-            if (boolGrid[i]) tot++
-        }
-        return tot
     }
 
 }

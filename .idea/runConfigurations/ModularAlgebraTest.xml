@@ -13,7 +13,7 @@
     <option name="MAIN_CLASS_NAME" value="com.ubertob.performance.modularAlgebra.ModularAlgebraTest" />
     <option name="METHOD_NAME" value="" />
     <option name="TEST_OBJECT" value="class" />
-    <option name="VM_PARAMETERS" value=" -Xms6g -Xmx6g    -Dgraal.ShowConfiguration=info -XX:+UseParallelGC  -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:-UseJVMCICompiler " />
+    <option name="VM_PARAMETERS" value="-Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+UseParallelOldGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler" />
     <option name="PARAMETERS" value="" />
     <method v="2">
       <option name="Make" enabled="true" />
