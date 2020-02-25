@@ -19,12 +19,12 @@ jmh {
         "-Dgraal.ShowConfiguration=info",
         "-XX:+AlwaysPreTouch",
         "-XX:+UnlockExperimentalVMOptions",
-        "-XX:+UseJVMCICompiler"
+        "-XX:-UseJVMCICompiler"
     )
-    fork = 1
-    warmupForks = 0
-    warmupIterations = 1
-    iterations = 1
+//    fork = 1
+//    warmupForks = 0
+//    warmupIterations = 1
+//    iterations = 1
 }
 
 dependencies {

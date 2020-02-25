@@ -30,7 +30,7 @@ open class PerformanceMicroBenchmark {
             Watch(20, 99)
         )
 
-        Knapsack.selectWatches(shop, 500)
+        Knapsack.selectWatches(shop, 200)
     }
 
     @Benchmark
