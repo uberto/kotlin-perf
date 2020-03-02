@@ -31,7 +31,7 @@ open class PerformanceMicroBenchmark {
             Watch(20, 99)
         )
 
-        blackhole.consume(Knapsack.selectWatches(shop, 250))
+        blackhole.consume(Knapsack.selectWatches(shop, 199))
     }
 
     @Benchmark

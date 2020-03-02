@@ -56,9 +56,17 @@ internal class MandelbrotSetTest{
             renderToAsciiArt(1000, matrix).first().also{println(it.slice(1..80))}
         }
 
-        //1509   -Xms6g -Xmx6g -XX:+UseParallelGC
-        //1279   -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
+        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:-UseJVMCICompiler
+        //1034 ms,
+
+        //Graal CE 20.0 J11
+        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+        //935 ms.
+
+        //Graal EE 20.0 J11
+        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+        //938 ms.
 
 
     }

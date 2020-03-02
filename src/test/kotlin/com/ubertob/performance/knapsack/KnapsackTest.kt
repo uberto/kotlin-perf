@@ -90,12 +90,17 @@ class KnapsackTest {
             assertEquals(515, selectWatches(shop, 100))
             assertEquals(1199, selectWatches(shop, 250))
             assertEquals(1919, selectWatches(shop, 500))
-            //old
-            //1125 -Xms6g -Xmx6g -XX:+UseParallelGC
-            //1704 -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
-            //719 -Xms6g -Xmx6g -XX:+UseParallelGC
-            //661 -Xms6g -Xmx6g -XX:+UseParallelGC -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+            // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:-UseJVMCICompiler
+            // 592 ms.
+
+            //Graal CE 20.0 J11
+            // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+            // 522 ms.
+
+            //Graal EE 20.0 J11
+            // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+            // 448 ms.
 
             val elapsed = System.currentTimeMillis() - start
             println("knapsack " + elapsed)

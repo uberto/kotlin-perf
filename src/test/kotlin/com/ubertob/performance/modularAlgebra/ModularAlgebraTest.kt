@@ -56,11 +56,18 @@ class ModularAlgebraTest {
             val elapsed = System.currentTimeMillis() - start
             println("Modular Algebra of size $size  -> $elapsed ms.  (freemem ${Runtime.getRuntime().freeMemory() / 1000000})")
         }
-        //Graal 19.3 size 1000
-        //11026 ms.
-        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+UseParallelOldGC -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
-        //16272 ms.
-        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+UseParallelOldGC -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:-UseJVMCICompiler
+
+
+        //11771 ms.
+        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:-UseJVMCICompiler
+
+        //Graal CE 20.0 J11
+        //11771 ms.
+        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+
+        //Graal EE 20.0 J11
+        //10408 ms.
+        // -Xms6g -Xmx6g -Dgraal.ShowConfiguration=info -XX:+AlwaysPreTouch -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
     }
 
