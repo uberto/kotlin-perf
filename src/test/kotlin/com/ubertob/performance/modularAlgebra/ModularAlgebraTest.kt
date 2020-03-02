@@ -45,9 +45,7 @@ class ModularAlgebraTest {
     fun performanceTest() {
         val size = 1000
 
-        //100*100*10000 = 100M operations for run (about 1s)
-
-        (1..20).forEach {
+        (1..5).forEach {
             val start = System.currentTimeMillis()
             assertEquals(55561084, sumOfFunction(1, 100) { x -> compareSquares(size, x) })
             assertEquals(102208112, sumOfFunction(101, 300) { x -> compareSquares(size, x) })

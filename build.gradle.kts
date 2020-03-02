@@ -21,10 +21,13 @@ jmh {
         "-XX:+UnlockExperimentalVMOptions",
         "-XX:-UseJVMCICompiler"
     )
-//    fork = 1
-//    warmupForks = 0
-//    warmupIterations = 1
-//    iterations = 1
+    warmupForks = 0
+    fork = 1
+    warmupIterations = 1
+    iterations = 1
+//    fork = 2
+//    warmupIterations = 5
+//    iterations = 5
 }
 
 dependencies {

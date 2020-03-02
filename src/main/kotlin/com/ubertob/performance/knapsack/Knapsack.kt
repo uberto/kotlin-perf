@@ -11,16 +11,16 @@ class Knapsack {
         fun selectWatches(shop: Set<Watch>, maxWeight: Int): Int {
 
             val memo = mutableMapOf<String, Int>()
-            val top = selectWatches(memo, shop, maxWeight, emptySet(), 0)
-//            println(" ${memo.size}")
+            val watches = shop.asSequence()
+            val top = selectWatchesMemo(memo, watches, maxWeight, emptySet(), 0)
 
             return top
         }
 
-        fun priceAddingElement(memo: Memoizer, shop: Set<Watch>, choice: Set<Watch>, maxWeight: Int, priceSum: Int): Int =
+        fun priceAddingElement(memo: Memoizer, shop: Sequence<Watch>, choice: Set<Watch>, maxWeight: Int, priceSum: Int): Int =
             shop.filter { !(it in choice) && it.weight <= maxWeight }
                 .map {
-                    selectWatches(
+                    selectWatchesMemo(
                         memo,
                         shop,
                         maxWeight - it.weight,
@@ -30,9 +30,10 @@ class Knapsack {
                 .max() ?: priceSum
 
 
-        fun selectWatches(memo: Memoizer, shop: Set<Watch>, maxWeight: Int, choice: Set<Watch>, priceSum: Int): Int =
+        fun selectWatchesMemo(memo: Memoizer, shop: Sequence<Watch>, maxWeight: Int, choice: Set<Watch>, priceSum: Int): Int =
             memoization(memo, generateKey(choice)) {
-                priceAddingElement(memo, shop, choice, maxWeight, priceSum)}
+                priceAddingElement(memo, shop, choice, maxWeight, priceSum)
+            }
 
 
         private fun memoization(memo: Memoizer, key: String, f: () -> Int): Int =
@@ -43,14 +44,13 @@ class Knapsack {
 
 
         private fun generateKey(choice: Set<Watch>): String =
-//            choice.sortedBy { "${it.price}-${it.weight}" }.toString()
-            choice.map{ it.hashCode() }.sorted().joinToString("")
+            choice.map{ it.uniqueKey() }.sorted().joinToString("")
     }
 }
 
 
 data class Watch(val weight: Int, val price: Int) {
-    override fun hashCode(): Int {
-        return weight * 1000 + price
+    fun uniqueKey(): Int {
+        return weight shl 16 + price
     }
 }

@@ -8,6 +8,17 @@ import org.junit.jupiter.api.assertAll
 class KnapsackTest {
 
     @Test
+    fun singleShop() {
+
+        val shop = Knapsack.shop(
+            Watch(weight = 1, price = 1)
+        )
+
+        assertEquals(1, selectWatches(shop, maxWeight = 1))
+        assertEquals(1, selectWatches(shop, maxWeight = 2))
+    }
+
+    @Test
     fun smallShop() {
 
         val shop = Knapsack.shop(

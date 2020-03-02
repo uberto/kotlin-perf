@@ -30,7 +30,7 @@ open class PerformanceMicroBenchmark {
             Watch(20, 99)
         )
 
-        Knapsack.selectWatches(shop, 200)
+        Knapsack.selectWatches(shop, 250)
     }
 
     @Benchmark
@@ -42,7 +42,10 @@ open class PerformanceMicroBenchmark {
 
     @Benchmark
     fun modularAlgebra() {
-        compareSquares(1000, 13)
+        compareSquares(500, 13)
+        compareSquares(500, 7)
+        compareSquares(500, 17)
+        compareSquares(500, 53)
     }
 
 }
