@@ -22,12 +22,9 @@ jmh {
         "-XX:-UseJVMCICompiler"
     )
     warmupForks = 0
-    fork = 1
-    warmupIterations = 1
-    iterations = 1
-//    fork = 2
-//    warmupIterations = 5
-//    iterations = 5
+    fork = 2
+    warmupIterations = 5
+    iterations = 5
 }
 
 dependencies {
