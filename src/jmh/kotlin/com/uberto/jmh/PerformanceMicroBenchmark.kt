@@ -6,11 +6,12 @@ import com.ubertob.performance.mandelbrot.Complex
 import com.ubertob.performance.mandelbrot.ZoomableView
 import com.ubertob.performance.modularAlgebra.compareSquares
 import org.openjdk.jmh.annotations.Benchmark
+import org.openjdk.jmh.infra.Blackhole
 
 open class PerformanceMicroBenchmark {
 
     @Benchmark
-    fun knapsack(){
+    fun knapsack(blackhole: Blackhole) {
         val shop = Knapsack.shop(
             Watch(20, 65),
             Watch(8, 35),
@@ -30,22 +31,22 @@ open class PerformanceMicroBenchmark {
             Watch(20, 99)
         )
 
-        Knapsack.selectWatches(shop, 250)
+        blackhole.consume(Knapsack.selectWatches(shop, 250))
     }
 
     @Benchmark
-    fun mandelbrot() {
+    fun mandelbrot(blackhole: Blackhole) {
         val center = Complex(-1.0, 0.0)
         val pa = ZoomableView(center, 0.5).toPointsArea(100, 100)
-        pa.calculate(1000)
+        blackhole.consume(pa.calculate(1000))
     }
 
     @Benchmark
-    fun modularAlgebra() {
-        compareSquares(500, 13)
-        compareSquares(500, 7)
-        compareSquares(500, 17)
-        compareSquares(500, 53)
+    fun modularAlgebra(blackhole: Blackhole) {
+        blackhole.consume(compareSquares(500, 13))
+        blackhole.consume(compareSquares(500, 7))
+        blackhole.consume(compareSquares(500, 17))
+        blackhole.consume(compareSquares(500, 53))
     }
 
 }

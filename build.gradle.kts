@@ -19,7 +19,7 @@ jmh {
         "-Dgraal.ShowConfiguration=info",
         "-XX:+AlwaysPreTouch",
         "-XX:+UnlockExperimentalVMOptions",
-        "-XX:-UseJVMCICompiler"
+        "-XX:+UseJVMCICompiler"
     )
     warmupForks = 0
     fork = 2
