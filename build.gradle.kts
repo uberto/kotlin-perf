@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.3.70"
     id("me.champeau.gradle.jmh") version "0.5.0"
 }
+
 group = "com.gamasoft"
 version = "1.0-SNAPSHOT"
 
@@ -13,6 +14,7 @@ repositories {
 
 jmh {
     jmhVersion = "1.23"
+//    includeTests = true
     jvmArgs = listOf(
         "-Xms6g",
         "-Xmx6g",
@@ -39,3 +41,64 @@ dependencies {
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
