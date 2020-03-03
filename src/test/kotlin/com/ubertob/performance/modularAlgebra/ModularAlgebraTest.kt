@@ -52,7 +52,6 @@ class ModularAlgebraTest {
             assertEquals(151590652, sumOfFunction(301, 600) { x -> compareSquares(size, x) })
             assertEquals(201270190, sumOfFunction(601, 1000) { x -> compareSquares(size, x) })
 
-
             val elapsed = System.currentTimeMillis() - start
             println("Modular Algebra of size $size  -> $elapsed ms.  (freemem ${Runtime.getRuntime().freeMemory() / 1000000})")
         }
