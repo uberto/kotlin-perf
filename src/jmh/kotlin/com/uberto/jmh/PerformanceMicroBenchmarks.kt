@@ -8,28 +8,29 @@ import com.ubertob.performance.modularAlgebra.compareSquares
 import org.openjdk.jmh.annotations.Benchmark
 import org.openjdk.jmh.infra.Blackhole
 
-open class PerformanceMicroBenchmark {
-    val shop = Knapsack.shop(
-        Watch(20, 65),
-        Watch(8, 35),
-        Watch(60, 245),
-        Watch(55, 195),
-        Watch(40, 65),
-        Watch(70, 150),
-        Watch(85, 275),
-        Watch(25, 155),
-        Watch(30, 120),
-        Watch(65, 320),
-        Watch(75, 75),
-        Watch(10, 40),
-        Watch(95, 200),
-        Watch(50, 100),
-        Watch(40, 220),
-        Watch(20, 99)
-    )
+open class PerformanceMicroBenchmarks {
 
     @Benchmark
     fun knapsack(blackhole: Blackhole) {
+        val shop = Knapsack.shop(
+            Watch(20, 65),
+            Watch(8, 35),
+            Watch(60, 245),
+            Watch(55, 195),
+            Watch(40, 65),
+            Watch(70, 150),
+            Watch(85, 275),
+            Watch(25, 155),
+            Watch(30, 120),
+            Watch(65, 320),
+            Watch(75, 75),
+            Watch(10, 40),
+            Watch(95, 200),
+            Watch(50, 100),
+            Watch(40, 220),
+            Watch(20, 99)
+        )
+
         blackhole.consume(Knapsack.selectWatches(shop, 199))
     }
 
